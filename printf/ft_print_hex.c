@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 11:51:27 by fibarros          #+#    #+#             */
-/*   Updated: 2023/12/12 14:44:57 by fibarros         ###   ########.fr       */
+/*   Updated: 2023/12/14 12:02:33 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@ int	ft_hex_len(unsigned int num)
 	int	len;
 
 	len = 0;
+	if (num == 0)
+	{
+		return (1);
+	}
 	while (num != 0)
 	{
 		len ++;

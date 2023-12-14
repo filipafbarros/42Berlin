@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 11:51:40 by fibarros          #+#    #+#             */
-/*   Updated: 2023/12/12 16:50:13 by fibarros         ###   ########.fr       */
+/*   Updated: 2023/12/14 10:38:26 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	ft_print_ptr(unsigned long long ptr)
 	int	len;
 
 	len = 0;
-	if (ptr == NULL)
+	if (ptr == 0)
 	{
 		return (write(STDOUT_FILENO, "(nil)", 5));
 	}
