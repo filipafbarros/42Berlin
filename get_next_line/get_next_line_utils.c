@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 10:30:16 by fibarros          #+#    #+#             */
-/*   Updated: 2024/01/12 11:46:48 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/01/12 14:52:52 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ char	*ft_substr(const char *str, unsigned int start, size_t len)
 	size_t	i;
 
 	i = 0;
-	if ((int)start > ft_strlen(str))
+	if ((int)start > (int)ft_strlen(str))
 		return (ft_strdup(""));
 	if (ft_strlen(str) - start < len)
 		len = ft_strlen(str) - start;

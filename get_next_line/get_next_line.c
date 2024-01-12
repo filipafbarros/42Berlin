@@ -6,16 +6,16 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 10:30:01 by fibarros          #+#    #+#             */
-/*   Updated: 2024/01/12 12:12:11 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/01/12 14:57:35 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdio.h>
 
-static char	*ft_read(int fd, char *buff, char *backup)
+char	*ft_read(int fd, char *buff, char *backup)
 {
-	int		bytes_read;
+	ssize_t	bytes_read;
 	char	*temp;
 
 	bytes_read = 1;
@@ -42,10 +42,10 @@ static char	*ft_read(int fd, char *buff, char *backup)
 	return (backup);
 }
 
-char	*get_line(char *line)
+char	*ft_get_line(char *line)
 {
-	ssize_t		i;
-	char		*backup;
+	int		i;
+	char	*backup;
 
 	i = 0;
 	while (line[i] != '\n' && line[i] != '\0')
@@ -68,17 +68,23 @@ char	*get_next_line(int fd)
 	char		*line;
 	static char	*backup;
 
-	if (fd < 0 || BUFFER_SIZE < 1 || read(fd, 0, 0) < 0)
-		return (NULL);
 	buff = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buff)
 		return (NULL);
+	if (fd < 0 || BUFFER_SIZE < 1 || read(fd, 0, 0) < 0)
+	{
+		free(backup);
+		free(buff);
+		backup = NULL;
+		buff = NULL;
+		return (NULL);
+	}
 	line = ft_read(fd, buff, backup);
 	free(buff);
 	buff = NULL;
 	if (!line)
 		return (NULL);
-	backup = get_line(line);
+	backup = ft_get_line(line);
 	return (line);
 }
 
