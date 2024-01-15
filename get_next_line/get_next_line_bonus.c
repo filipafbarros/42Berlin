@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/15 10:30:01 by fibarros          #+#    #+#             */
-/*   Updated: 2024/01/15 13:15:43 by fibarros         ###   ########.fr       */
+/*   Created: 2024/01/12 15:05:17 by fibarros          #+#    #+#             */
+/*   Updated: 2024/01/15 13:29:24 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 #include <stdio.h>
 
 char	*ft_read(int fd, char *buff, char *backup)
@@ -66,24 +66,24 @@ char	*get_next_line(int fd)
 {
 	char		*buff;
 	char		*line;
-	static char	*backup;
+	static char	*backup[__FD_SETSIZE];
 
 	buff = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buff)
 		return (NULL);
 	if (fd < 0 || BUFFER_SIZE < 1 || read(fd, 0, 0) < 0)
 	{
-		free(backup);
+		free(backup[fd]);
 		free(buff);
-		backup = NULL;
+		backup[fd] = NULL;
 		buff = NULL;
 		return (NULL);
 	}
-	line = ft_read(fd, buff, backup);
+	line = ft_read(fd, buff, backup[fd]);
 	free(buff);
 	buff = NULL;
 	if (!line)
 		return (NULL);
-	backup = ft_get_line(line);
+	backup[fd] = ft_get_line(line);
 	return (line);
 }
