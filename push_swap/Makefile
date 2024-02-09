@@ -6,7 +6,7 @@
 #    By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/23 16:01:36 by fibarros          #+#    #+#              #
-#    Updated: 2024/02/09 10:46:30 by fibarros         ###   ########.fr        #
+#    Updated: 2024/02/09 17:27:37 by fibarros         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,8 @@ SRCS =	main.c \
 		swap.c \
 		error_handling.c \
 		initialize_stack.c \
+		sort_small.c \
+		
 			
 OBJS = $(SRCS:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 15:59:27 by fibarros          #+#    #+#             */
-/*   Updated: 2024/02/09 11:22:08 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/02/09 17:27:45 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void				rrr(t_stack_node **a, t_stack_node **b);
 // Utils
 void				print_stack(t_stack_node *stack);
 t_stack_node		*get_last_node(t_stack_node *stack);
+int					stack_len(t_stack_node *stack);
 
 /* initialization*/
 void				init_stack_a(t_stack_node **a, char **argv);
