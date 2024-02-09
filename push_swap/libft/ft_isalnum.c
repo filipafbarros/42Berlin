@@ -1,16 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_utils.c                                      :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/30 09:53:48 by fibarros          #+#    #+#             */
-/*   Updated: 2024/02/05 17:50:28 by fibarros         ###   ########.fr       */
+/*   Created: 2023/11/14 12:11:48 by fibarros          #+#    #+#             */
+/*   Updated: 2023/11/28 17:01:58 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-/*stack len*/
-/* Stack sorted*/
+int	ft_isalnum(int c)
+{
+	return (ft_isalpha(c) || ft_isdigit(c));
+}

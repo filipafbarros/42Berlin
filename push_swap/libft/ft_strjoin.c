@@ -1,40 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/24 10:38:05 by fibarros          #+#    #+#             */
-/*   Updated: 2024/02/09 11:23:57 by fibarros         ###   ########.fr       */
+/*   Created: 2023/11/22 11:03:40 by fibarros          #+#    #+#             */
+/*   Updated: 2023/11/22 15:45:27 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	t_stack_node	*a;
-	t_stack_node	*b;
-	int				i;
+	char	*result;
+	size_t	i;
+	size_t	j;
 
-	a = NULL;
 	i = 0;
-	b = NULL;
-	if (argc == 1 || (argc == 2 && !argv[1][0]))
-		return (0);
-	else if (argc == 2)
-		argv = ft_split(argv[1], ' ');
-	init_stack_a(&a, argv + 1);
-	
-}
-
-void	print_stack(t_stack_node *stack)
-{
-	while (stack != NULL)
+	j = 0;
+	result = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	if (!result)
+		return (NULL);
+	while (s1[i] != '\0')
 	{
-		ft_printf("%d", stack->value);
-		stack = stack->next;
-		ft_printf("\n");
+		result[i] = s1[i];
+		i++;
 	}
+	while (s2[j] != '\0')
+	{
+		result[i + j] = s2[j];
+		j++;
+	}
+	result[i + j] = '\0';
+	return (result);
 }

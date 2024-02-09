@@ -1,16 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_utils.c                                      :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/30 09:53:48 by fibarros          #+#    #+#             */
-/*   Updated: 2024/02/05 17:50:28 by fibarros         ###   ########.fr       */
+/*   Created: 2023/11/22 11:04:48 by fibarros          #+#    #+#             */
+/*   Updated: 2023/12/01 13:53:59 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-/*stack len*/
-/* Stack sorted*/
+void	ft_putchar_fd(char c, int fd)
+{
+	write(fd, &c, 1);
+}

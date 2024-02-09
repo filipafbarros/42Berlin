@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 09:49:46 by fibarros          #+#    #+#             */
-/*   Updated: 2024/01/31 17:27:58 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/02/05 18:20:31 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	init_stack_a(t_stack_node **a, char **argv)
 {
-	long	nbr;
-	int		i;
+	long				nbr;
+	int					i;
 
 	i = 0;
 	while (argv[i])
@@ -26,6 +26,7 @@ void	init_stack_a(t_stack_node **a, char **argv)
 		if (error_repetion(*a, nbr))
 			exit_error(a, NULL);
 		append_node(a, (int)nbr);
+		//ft_printf("Appended value: %d\n", (int)nbr);
 		i++;
 	}
 }
@@ -40,12 +41,13 @@ void	append_node(t_stack_node **stack, int n)
 	node = malloc(sizeof(t_stack_node));
 	if (node == NULL)
 		return ;
-	node->next = NULL;
 	node->value = n;
+	node->next = NULL;
 	if (*stack == NULL)
 	{
 		*stack = node;
 		node->prev = NULL;
+		return ;
 	}
 	last_node = *stack;
 	while (last_node->next != NULL)
@@ -63,7 +65,7 @@ long	ft_atol(const char *str)
 	nbr = 0;
 	i = 0;
 	sign = 1;
-	while (str[i] == ' ' || str[i] >= 9 && str[i] <= 13)
+	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
 		i++;
 	if (str[i] == '-' || str[i] == '+')
 	{

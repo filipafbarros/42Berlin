@@ -6,55 +6,54 @@
 #    By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/23 16:01:36 by fibarros          #+#    #+#              #
-#    Updated: 2024/01/31 14:50:25 by fibarros         ###   ########.fr        #
+#    Updated: 2024/02/09 10:46:30 by fibarros         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #PROGRAM
-NAME			= push_swap
-CC				= cc
-CFLAGS			= -Wall -Wextra -Werror
-PRINTF 			= libftprintf.a
-PRINTFDIR 		= ./printf
-FSANITIZE 		= -fsanitize=address -g3
-RM		  		= rm -rf 
+NAME = push_swap
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
+LIBFT = libftprintf.a
+LIBFTDIR = ./libft
 
 #SRCS
-SRCS =		main.c \
-			push.c \
-			reverse.c \
-			rotate.c \
-			stack_utils.c \
-			swap.c \
-			error_handling.c \ 
-			initialize_stack.c \
+SRCS =	main.c \
+		push.c \
+		reverse_rotate.c \
+		rotate.c \
+		stack_utils.c \
+		swap.c \
+		error_handling.c \
+		initialize_stack.c \
 			
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
-# PRINTF
+# LIBFT
 
-$(NAME) : $(OBJS)
-		  @make -C printf
-		  @cp printf/libftprintf.a .
-		  $(CC) $(CFLAGS) $(OBJ) $(PRINTF) -O $(NAME)
+makelibft:
+	@make -C $(LIBFTDIR)
+	@cp $(LIBFTDIR)/$(LIBFT) .
+	@mv $(LIBFT) $(NAME)
+
+$(NAME) : makelibft $(OBJS)
+			$(CC) $(CFLAGS) $(OBJS) -o $(NAME) ./libft/libftprintf.a
+
+
+clean:
+	@rm -rf $(OBJS)
+	@make -C $(LIBFTDIR) clean
 	
-run: all
-	cc -g main.c push_swap
-	./a.out | cat -e
-
-clean: 
-		make clean -C printf
-		${RM} ${OBJS}
-
-fclean: 
-		clean
-				@make fclean -C printf
-				${RM} $(NAME)
-				${RM} $(PRINTF)
-				${RM} printf/$(PRINTF)
+	
+fclean: clean
+	@rm -rf $(NAME)
+	@make -C $(LIBFTDIR) fclean
 
 re: fclean all
+
+run: all
+	./a.out | cat -e
 
 .PHONY: all clean fclean re

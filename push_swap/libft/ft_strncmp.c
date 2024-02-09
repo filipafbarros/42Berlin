@@ -1,40 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/24 10:38:05 by fibarros          #+#    #+#             */
-/*   Updated: 2024/02/09 11:23:57 by fibarros         ###   ########.fr       */
+/*   Created: 2023/11/16 15:16:51 by fibarros          #+#    #+#             */
+/*   Updated: 2023/11/29 11:39:30 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	t_stack_node	*a;
-	t_stack_node	*b;
-	int				i;
+	size_t	i;
 
-	a = NULL;
 	i = 0;
-	b = NULL;
-	if (argc == 1 || (argc == 2 && !argv[1][0]))
+	if (n == 0)
 		return (0);
-	else if (argc == 2)
-		argv = ft_split(argv[1], ' ');
-	init_stack_a(&a, argv + 1);
-	
-}
-
-void	print_stack(t_stack_node *stack)
-{
-	while (stack != NULL)
+	while (*s1 && *s2 && i < n)
 	{
-		ft_printf("%d", stack->value);
-		stack = stack->next;
-		ft_printf("\n");
+		if (*s1 != *s2)
+			return (*(unsigned char *)s1 - *(unsigned char *)s2);
+		s1++;
+		s2++;
+		i++;
 	}
+	if (i == n)
+	{
+		--s1;
+		--s2;
+	}
+	return (*(unsigned char *)s1 - *(unsigned char *)s2);
 }

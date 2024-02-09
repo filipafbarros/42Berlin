@@ -1,16 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_utils.c                                      :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/30 09:53:48 by fibarros          #+#    #+#             */
-/*   Updated: 2024/02/05 17:50:28 by fibarros         ###   ########.fr       */
+/*   Created: 2023/11/16 15:16:24 by fibarros          #+#    #+#             */
+/*   Updated: 2023/11/21 12:40:35 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-/*stack len*/
-/* Stack sorted*/
+int	ft_tolower(int c)
+{
+	if (c >= 'A' && c <= 'Z')
+	{
+		return (c += 32);
+	}
+	else
+	{
+		return (c);
+	}
+}

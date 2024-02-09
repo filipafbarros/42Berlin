@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 11:09:46 by fibarros          #+#    #+#             */
-/*   Updated: 2024/01/31 17:18:36 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/02/01 10:08:53 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	exit_error(t_stack_node **stack_a, t_stack_node **stack_b)
 		free_stack(stack_a);
 	if (stack_b == NULL || *stack_b != NULL)
 		free_stack(stack_b);
-	ft_printf("Error \n");
+	printf("Error \n");
 	exit (1);
 }
 

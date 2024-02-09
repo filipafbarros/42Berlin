@@ -1,40 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/24 10:38:05 by fibarros          #+#    #+#             */
-/*   Updated: 2024/02/09 11:23:57 by fibarros         ###   ########.fr       */
+/*   Created: 2023/11/16 15:16:34 by fibarros          #+#    #+#             */
+/*   Updated: 2023/11/27 17:55:27 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+char	*ft_strchr(const char *s, int c)
 {
-	t_stack_node	*a;
-	t_stack_node	*b;
-	int				i;
+	int		i;
+	char	find;
 
-	a = NULL;
 	i = 0;
-	b = NULL;
-	if (argc == 1 || (argc == 2 && !argv[1][0]))
-		return (0);
-	else if (argc == 2)
-		argv = ft_split(argv[1], ' ');
-	init_stack_a(&a, argv + 1);
-	
-}
-
-void	print_stack(t_stack_node *stack)
-{
-	while (stack != NULL)
+	find = (unsigned char)c;
+	while (s[i] != find)
 	{
-		ft_printf("%d", stack->value);
-		stack = stack->next;
-		ft_printf("\n");
+		if (s[i] == '\0')
+		{
+			return (NULL);
+		}
+		i++;
 	}
+	return ((char *)s + i);
 }

@@ -1,40 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_print_nbr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/24 10:38:05 by fibarros          #+#    #+#             */
-/*   Updated: 2024/02/09 11:23:57 by fibarros         ###   ########.fr       */
+/*   Created: 2023/12/12 10:51:47 by fibarros          #+#    #+#             */
+/*   Updated: 2024/02/05 10:44:50 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+int	ft_print_nbr(int n)
 {
-	t_stack_node	*a;
-	t_stack_node	*b;
-	int				i;
+	int	i;
 
-	a = NULL;
-	i = 0;
-	b = NULL;
-	if (argc == 1 || (argc == 2 && !argv[1][0]))
-		return (0);
-	else if (argc == 2)
-		argv = ft_split(argv[1], ' ');
-	init_stack_a(&a, argv + 1);
-	
-}
-
-void	print_stack(t_stack_node *stack)
-{
-	while (stack != NULL)
+	i = 1;
+	if (n < 0 && n != -2147483648)
 	{
-		ft_printf("%d", stack->value);
-		stack = stack->next;
-		ft_printf("\n");
+		ft_putchar_fd('-', 1);
+		n = -n;
+		i++;
 	}
+	else if (n == -2147483648)
+	{
+		ft_putchar_fd('-', 1);
+		ft_putnbr_fd(-(n / 10), 1);
+		ft_putchar_fd('8', 1);
+		return (11);
+	}
+	ft_putnbr_fd(n, 1);
+	while (n > 9)
+	{
+		n /= 10;
+		i++;
+	}
+	return (i);
 }

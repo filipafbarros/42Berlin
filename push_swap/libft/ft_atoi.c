@@ -1,40 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/24 10:38:05 by fibarros          #+#    #+#             */
-/*   Updated: 2024/02/09 11:23:57 by fibarros         ###   ########.fr       */
+/*   Created: 2023/11/16 15:17:26 by fibarros          #+#    #+#             */
+/*   Updated: 2023/11/28 16:13:28 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+int	ft_atoi(const char *str)
 {
-	t_stack_node	*a;
-	t_stack_node	*b;
-	int				i;
+	int	i;
+	int	sign;
+	int	result;
 
-	a = NULL;
 	i = 0;
-	b = NULL;
-	if (argc == 1 || (argc == 2 && !argv[1][0]))
-		return (0);
-	else if (argc == 2)
-		argv = ft_split(argv[1], ' ');
-	init_stack_a(&a, argv + 1);
-	
-}
-
-void	print_stack(t_stack_node *stack)
-{
-	while (stack != NULL)
+	sign = 1;
+	result = 0;
+	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '-' || str[i] == '+')
 	{
-		ft_printf("%d", stack->value);
-		stack = stack->next;
-		ft_printf("\n");
+		if (str[i] == '-')
+			sign *= -1;
+		i++;
 	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		result = (str[i] - '0') + (result * 10);
+		i++;
+	}
+	return (result * sign);
 }
