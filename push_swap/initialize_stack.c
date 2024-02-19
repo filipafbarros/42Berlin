@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 09:49:46 by fibarros          #+#    #+#             */
-/*   Updated: 2024/02/05 18:20:31 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/02/14 11:03:16 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,14 @@ void	init_stack_a(t_stack_node **a, char **argv)
 	i = 0;
 	while (argv[i])
 	{
+		// if (syntax_error(argv[i]))
+		// 	exit_error(a, NULL);
 		nbr = ft_atol(argv[i]);
 		if (nbr > INT_MAX || nbr < INT_MIN)
 			exit_error(a, NULL);
 		if (error_repetion(*a, nbr))
 			exit_error(a, NULL);
 		append_node(a, (int)nbr);
-		//ft_printf("Appended value: %d\n", (int)nbr);
 		i++;
 	}
 }

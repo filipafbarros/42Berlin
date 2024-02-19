@@ -6,14 +6,14 @@
 #    By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/23 16:01:36 by fibarros          #+#    #+#              #
-#    Updated: 2024/02/09 17:27:37 by fibarros         ###   ########.fr        #
+#    Updated: 2024/02/14 17:02:41 by fibarros         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #PROGRAM
 NAME = push_swap
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -fsanitize=leak
 LIBFT = libftprintf.a
 LIBFTDIR = ./libft
 
@@ -27,6 +27,8 @@ SRCS =	main.c \
 		error_handling.c \
 		initialize_stack.c \
 		sort_small.c \
+		sort_big.c \
+		big_sort_utils.c\
 		
 			
 OBJS = $(SRCS:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 11:09:46 by fibarros          #+#    #+#             */
-/*   Updated: 2024/02/01 10:08:53 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/02/14 11:02:02 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,3 +55,8 @@ int	error_repetion(t_stack_node *a, int n)
 	}
 	return (0);
 }
+
+// int	syntax_error(char *str)
+// {
+	
+// }

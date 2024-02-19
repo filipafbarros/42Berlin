@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 14:13:26 by fibarros          #+#    #+#             */
-/*   Updated: 2024/02/08 16:27:02 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/02/16 15:51:54 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ void	swap(t_stack_node **stack)
 {
 	if (*stack == NULL || (*stack)->next == NULL)
 		return ;
-	// ft_printf("first stack: \n");
-	// print_stack(*stack);
 	*stack = (*stack)->next;
 	(*stack)->prev->prev = *stack;
 	(*stack)->prev->next = (*stack)->next;
@@ -27,8 +25,6 @@ void	swap(t_stack_node **stack)
 		(*stack)->next->prev = (*stack)->prev;
 	(*stack)->next = (*stack)->prev;
 	(*stack)->prev = NULL;
-	// ft_printf("swap \n");
-	// print_stack(*stack);
 }
 
 void	sa(t_stack_node **a)

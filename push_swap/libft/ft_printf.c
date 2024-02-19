@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 11:46:10 by fibarros          #+#    #+#             */
-/*   Updated: 2024/02/05 10:45:11 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/02/12 11:34:59 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,3 @@ int	ft_printf(const char *str, ...)
 	va_end(args);
 	return (len);
 }
-

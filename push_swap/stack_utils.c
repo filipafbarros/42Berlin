@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 09:53:48 by fibarros          #+#    #+#             */
-/*   Updated: 2024/02/09 16:51:54 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/02/12 13:46:34 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,58 @@ int	stack_len(t_stack_node *stack)
 		stack = stack->next;
 		i++;
 	}
+	return (i);
 }
 
-void    find_highest_node(t_stack_node *stack)
+t_stack_node	*find_max(t_stack_node *stack)
 {
-    
+	int				i;
+	t_stack_node	*highest_node;
+
+	i = INT_MIN;
+	if (stack == NULL)
+		return (NULL);
+	while (stack)
+	{
+		if (stack->value > i)
+		{
+			i = stack->value;
+			highest_node = stack;
+		}
+		stack = stack->next;
+	}
+	return (highest_node);
+}
+
+t_stack_node	*find_min(t_stack_node *stack)
+{
+	int				i;
+	t_stack_node	*smallest_node;
+
+	i = INT_MIN;
+	if (stack == NULL)
+		return (NULL);
+	while (stack)
+	{
+		if (stack->value < i)
+		{
+			i = stack->value;
+			smallest_node = stack;
+		}
+		stack = stack->next;
+	}
+	return (smallest_node);
+}
+
+bool	is_sorted(t_stack_node **a)
+{
+	if (a == NULL)
+		return (1);
+	while ((*a)->next)
+	{
+		if ((*a)->value > (*a)->next->value)
+			return (false);
+		*a = (*a)->next;
+	}
+	return (true);
 }
