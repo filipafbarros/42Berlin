@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 14:34:51 by fibarros          #+#    #+#             */
-/*   Updated: 2024/02/19 15:59:09 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/02/20 11:14:02 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	get_cost(t_stack_node *a, t_stack_node *b)
 		{
 			
 		}
+		else if ()
 	}
 }
 
