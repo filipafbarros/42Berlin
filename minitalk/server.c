@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 15:41:25 by fibarros          #+#    #+#             */
-/*   Updated: 2024/02/26 14:13:02 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/02/27 14:52:33 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,17 @@ int	main(void)
 
 void	signal_handler(int signum, siginfo_t *info, void *context)
 {
-	int				i;
+	static int		i;
 	unsigned char	c;
 
 	(void)context;
 	i = -1;
 	if (i < 0)
+		i = 7;
+	if (signum == SIGUSR1)
+		c |= (1 << i);
+	i--;
+	if (i < 0 && c)
 	{
 		
 	}
