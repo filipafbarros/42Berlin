@@ -3,32 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
+/*   By: filipa <filipa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 15:41:01 by fibarros          #+#    #+#             */
-/*   Updated: 2024/02/27 16:59:02 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/02/28 16:26:25 by filipa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void	signal_handler(int signum, siginfo_t* info, void* context)
+void	send_signal(pid_t pid, char *msg)
 {
-	static int	i;
-	static char	c;
+	int				i;
+	unsigned char	c;
 
-	(void)context;
-	if (info->pid)
-	{}
+	i = 8;
+	while (*msg)
+	{
+		c = *msg;
+		while (i > 0)
+		{
+			if (c & 0b10000000)
+				kill(pid, SIGUSR1);
+			else
+				kill(pid, SIGUSR2);
+			usleep(50);
+			i--;
+		}
+		msg++;
+	}
 }
 
 int	main(int argc, char **argv)
 {
 	pid_t				pid;
-	struct sigaction	sa;
+	char				*str;
 
-	sa.sa_handler = &signal_handler;
-	sa.sa_flags = SA_SIGINFO;
-	pid = getpid();
-	
+	if (argc == 3)
+	{
+		pid = ft_atoi(argv[1]);
+		str = argv[2];
+		send_signal(pid, str);
+	}
+	else
+	{
+		ft_printf("Args error\n");
+		exit(0);
+	}
+	return (0);
 }
