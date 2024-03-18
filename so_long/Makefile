@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+         #
+#    By: filipa <filipa@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/14 11:35:20 by fibarros          #+#    #+#              #
-#    Updated: 2024/02/16 17:51:22 by fibarros         ###   ########.fr        #
+#    Updated: 2024/03/14 15:23:04 by filipa           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,9 @@
 NAME = so_long
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -fsanitize=leak
+MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
+INCLUDE = -I./includes
+RM = rm -rf
 # LIBFT = libftprintf.a
 # LIBFTDIR = ./libft
 
@@ -25,16 +28,16 @@ INCLUDES = -I/usr/include -Imlx
 	$(CC) $(CFLAGS) -c -o $@ $< $(INCLUDES)
 
 # Link X11 and MLX
-MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
- 
+
+
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX_FLAGS)
 
 ######################################################################################
 #SRCS
 SRCS =	main.c \
-	
-			
+
+
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
@@ -53,8 +56,8 @@ $(NAME) : makelibft $(OBJS)
 clean:
 	@rm -rf $(OBJS)
 	@make -C $(LIBFTDIR) clean
-	
-	
+
+
 fclean: clean
 	@rm -rf $(NAME)
 	@make -C $(LIBFTDIR) fclean
@@ -68,6 +71,6 @@ run: all
 
 
 
- 
+
 
 

@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
+/*   By: filipa <filipa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 11:35:42 by fibarros          #+#    #+#             */
-/*   Updated: 2024/02/20 11:05:43 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/03/14 16:42:59 by filipa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG.H
-# define SO_LONG.H
+#include "includes/so_long.h"
 
-# include "minilibx-linux-master/mlx.h"
-# include <stdlib.h>
-
-typedef struct s_game
+// check if map is closed
+bool	is_closed(t_map *map)
 {
-	int     fd;
-    int     height;
-    int     width;
-    char    **map;
-    
-};          t_game
+	int	i;
+	int	j;
 
+	i = 0;
+	while (map->map[i])
+	{
+		j = 0;
+		while(map->map[i[j]])
+		{
+			if ()
+		}
+	}
+}
 
-#endif
+void	is_valid(t_map map)
+{
+
+}
