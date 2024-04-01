@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_big.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
+/*   By: filipa <filipa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 09:59:56 by fibarros          #+#    #+#             */
-/*   Updated: 2024/02/16 16:05:56 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/03/20 11:34:57 by filipa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ void	sort_big(t_stack_node **a, t_stack_node **b)
 	sort_small(a);
 	// while (*b)
 	// {
-		
+			// get target position
+			// get cost
+			// do cheapest move
 	// }
+
 }
