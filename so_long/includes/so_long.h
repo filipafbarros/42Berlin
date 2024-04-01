@@ -6,7 +6,7 @@
 /*   By: filipa <filipa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 11:35:42 by fibarros          #+#    #+#             */
-/*   Updated: 2024/03/14 15:59:34 by filipa           ###   ########.fr       */
+/*   Updated: 2024/03/18 17:53:08 by filipa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct s_game
 	void		*mlx_ptr;
 	void		*win_ptr;
 
-};          t_game
+}	t_game;
 
 
 #endif
