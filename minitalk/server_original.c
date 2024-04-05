@@ -6,56 +6,30 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 15:41:25 by fibarros          #+#    #+#             */
-/*   Updated: 2024/04/05 16:53:06 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/04/04 16:21:19 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-static void	signal_handler(int signum, siginfo_t *info, void *context);
-
-static void	print_char(char c, int i, int pid)
-{
-	ft_putchar_fd(c, 1);
-	if (i == 0)
-	{
-		if (kill(pid, SIGUSR2) == -1)
-			ft_printf("Failed to send signal");
-	}
-	if (i == 1)
-	{
-		if (kill(pid, SIGUSR1) == -1)
-			ft_printf("Failed to send signal");
-	}
-	signal_handler(0, NULL, NULL);
-}
-
-static void	signal_handler(int signum, siginfo_t *info, void *context)
+void	signal_handler(int signum, siginfo_t *info, void *context)
 {
 	static int	i;
-	static char	bit;
+	static char	c;
 
 	(void)context;
-	if (signum == 0)
+	if (signum == SIGUSR1)
+		c += 1 << (7 - i);
+	i++;
+	if (i == 8 && c)
 	{
+		ft_putchar_fd(c, 1);
+		c = 0;
 		i = 0;
-		bit = 0;
+		if (kill(info->si_pid, SIGUSR1) == -1)
+			ft_printf("Catastrophic fail - did not send SIGUSR1");
 		return ;
 	}
-	if (signum == SIGUSR2)
-		i++;
-	if (signum == SIGUSR1)
-	{
-		bit += 1 << (7 - i);
-		++i;
-	}
-	if (i == 8)
-	{
-		if (bit == 0)
-			return (print_char('\n', 0, info->si_pid));
-		return (print_char(bit, 1, info->si_pid));
-	}
-	kill(info->si_pid, SIGUSR1);
 }
 
 static void	sig_init(void)

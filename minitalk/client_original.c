@@ -6,13 +6,11 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 15:41:01 by fibarros          #+#    #+#             */
-/*   Updated: 2024/04/05 16:54:37 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/04/05 15:11:51 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
-
-static int	g_flag = 0;
 
 void	check_args(int ac, char **av)
 {
@@ -39,56 +37,32 @@ void	check_args(int ac, char **av)
 	}
 }
 
-static void	waitforsignal(void)
-{
-	int	i;
-
-	i = 0;
-	while (g_flag == 0)
-	{
-		if (i == 50)
-			exit(EXIT_FAILURE);
-		usleep(100);
-		i++;
-	}
-	g_flag = 0;
-}
-
-void	send_char(unsigned char c, pid_t pid)
-{
-	unsigned char	bit;
-
-	bit = 0b10000000;
-	while (bit)
-	{
-		if (bit & c)
-			kill(pid, SIGUSR1);
-		else
-			kill(pid, SIGUSR2);
-		waitforsignal();
-		bit >>= 1;
-	}
-}
-
 void	send_signal(pid_t pid, char *str)
 {
-	int	i;
+	unsigned char	c;
+	int				bits;
 
-	i = 0;
-	while (str[i])
+	while (*str)
 	{
-		send_char(str[i], pid);
-		i++;
+		c = *str;
+		bits = 8;
+		while (bits--)
+		{
+			if (c & 0b10000000)
+				kill(pid, SIGUSR1);
+			else
+				kill(pid, SIGUSR2);
+			usleep(300);
+			c <<= 1;
+		}
+		str++;
 	}
-	send_char(0, pid);
-	exit(EXIT_SUCCESS);
 }
 
 void	sig_handler(int signum)
 {
-	g_flag = 1;
 	if (signum == SIGUSR2)
-		ft_printf("-------message received!!!--------\n");
+		ft_printf("Things are happening!\n");
 }
 
 void	sig_config(void)
@@ -114,5 +88,6 @@ int	main(int argc, char **argv)
 	sig_config();
 	send_signal(pid, str);
 	send_signal(pid, "\n");
+	ft_printf("-------message received!!!--------");
 	return (EXIT_SUCCESS);
 }
