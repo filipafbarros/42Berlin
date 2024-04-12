@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 12:21:01 by fibarros          #+#    #+#             */
-/*   Updated: 2024/04/10 12:34:27 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/04/12 16:03:26 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,27 @@ void	fractol_init(t_fractol *fractol)
 {
 	fractol->x = 0;
 	fractol->y = 0;
+	fractol->zoom = 300;
+	fractol->offset_x = -1.21;
+	fractol->offset_y = -1.21;
+	fractol->mlx = mlx_init();
+	fractol->window = mlx_new_window(fractol->mlx, WIN_W, 
+			WIN_H, "Filipa 's Fract-ol");
+	fractol->img = mlx_new_image(fractol->mlx, WIN_W, WIN_H);
+	fractol->img_addr = mlx_get_data_addr(fractol->img, 
+			&fractol->bpp, 
+			&fractol->line_len, 
+			&fractol->endian);
+}
+
+/*
+void	fractol_init(t_fractol *fractol)
+{
+	fractol->x = 0;
+	fractol->y = 0;
+	fractol->zoom = 300;
+	fractol->offset_x = -1.21;
+	fractol->offset_y = -1.21;
 	fractol->mlx = mlx_init();
 	if (!fractol->mlx)
 	{
@@ -34,8 +55,8 @@ void	fractol_init(t_fractol *fractol)
 		ft_printf("Error w/ mlx_new_image");
 		exit(EXIT_FAILURE);
 	}
-	fractol->img_address = mlx_get_data_addr(fractol->img, 
-			&fractol->bits_per_pixel, 
-			&fractol->line_length, 
+	fractol->img_addr = mlx_get_data_addr(fractol->img, 
+			&fractol->bpp, 
+			&fractol->line_len, 
 			&fractol->endian);
-}
+}*/

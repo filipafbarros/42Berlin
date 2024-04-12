@@ -1,39 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw.c                                             :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/09 17:34:19 by fibarros          #+#    #+#             */
-/*   Updated: 2024/04/12 17:10:25 by fibarros         ###   ########.fr       */
+/*   Created: 2024/04/09 12:54:14 by fibarros          #+#    #+#             */
+/*   Updated: 2024/04/12 16:44:40 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	put_pixel(t_fractol *fractol, int x, int y, int color)
+int	main(int ac, char **av)
 {
-	char	*pxl;
+	t_fractol	*fractol;
 
-	if (x >= 0 && x < WIN_W && y >= 0 && y < WIN_H)
-	{
-		pxl = fractol->img_addr + (y * fractol->line_len 
-				+ x * (fractol->bpp / 8));
-		*(unsigned int *)pxl = color;
-	}
+	fractol = malloc(sizeof(t_fractol));
+	if (!fractol)
+		return (NULL);
+	fractol_init(fractol);
+	mlx_loop(fractol->mlx);
 }
 
-void	render_fractol(t_fractol *fractol)
-{
-	
-	
-	while (fractol->y < WIN_H)
-	{
-		while(fractol->x < WIN_W)
-		{
-			
-		}
-	}
 
-}
+/*
+mlx_hook
+mlx_key hook
+mlx_mouse hook
+*/
