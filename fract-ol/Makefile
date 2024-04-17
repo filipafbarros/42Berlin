@@ -6,7 +6,7 @@
 #    By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/09 12:11:48 by fibarros          #+#    #+#              #
-#    Updated: 2024/04/09 15:22:06 by fibarros         ###   ########.fr        #
+#    Updated: 2024/04/16 16:06:57 by fibarros         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,12 +14,17 @@
 
 NAME = fractol
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 LINK = -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 LIBFT = ./libft/libftprintf.a
 RM = rm -rf
-SRC = 	fractol.c
-				
+SRC = 	main.c \
+		init.c \
+		draw.c \
+		colors.c \
+		mandelbrot.c \
+		julia.c
+					
 OBJ	= $(SRC:.c=.o)
 
 all:$(NAME)
