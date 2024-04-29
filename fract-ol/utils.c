@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 12:26:56 by fibarros          #+#    #+#             */
-/*   Updated: 2024/04/19 12:28:54 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/04/29 10:21:37 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,29 @@ void	ft_putstr_fd(char *s, int fd)
 		ft_putchar_fd(s[i], fd);
 		i++;
 	}
+}
+
+int	exit_fractal(t_fractol *fractol)
+{
+	if (fractol == NULL)
+		return (0);
+	if (fractol->img)
+		mlx_destroy_image(fractol->mlx, fractol->img);
+	if (fractol->window)
+		mlx_destroy_window(fractol->mlx, fractol->window);
+	if (fractol->mlx)
+	{
+		mlx_loop_end(fractol->mlx);
+		mlx_destroy_display(fractol->mlx);
+		free(fractol->mlx);
+	}
+	free(fractol);
+	exit(0);
+}
+
+void	message(t_fractol *fractol)
+{
+	ft_putstr_fd("Invalid usage, please use: ./fractol <fractal> \n", 2);
+	ft_putstr_fd("Please choose a fractal: mandelbrot, julia \n", 2);
+	exit_fractal(fractol);
 }

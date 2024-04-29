@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 12:21:01 by fibarros          #+#    #+#             */
-/*   Updated: 2024/04/19 12:39:35 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/04/27 16:41:16 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@ void	init_position(t_fractol *fractol)
 {
 	fractol->x = 0;
 	fractol->y = 0;
-	fractol->zoom = 0;
 	fractol->min_real = -2.0;
 	fractol->max_real = 1.5;
 	fractol->min_img = -2.0;
 	fractol->max_img = 1.5;
+	fractol->zoom = 1.0;
+	fractol->x_shift = 0.0;
+	fractol->y_shift = 0.0;
 }
 
 void	init_img(t_fractol *fractol)

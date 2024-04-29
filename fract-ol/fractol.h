@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 12:11:35 by fibarros          #+#    #+#             */
-/*   Updated: 2024/04/19 15:03:50 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/04/27 16:43:15 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@
 
 typedef struct s_fractol
 {
+	char	*name;
 	void	*mlx;
 	void	*window;
 	void	*img;
@@ -54,26 +55,35 @@ typedef struct s_fractol
 	double	c_im;
 	double	z_re;
 	double	z_im;
-	double	zoom;
+	double	k_re;
+	double	k_im;
 	double	min_real;
 	double	max_real;
 	double	min_img;
 	double	max_img;
+	double	zoom;
+	double	x_shift;
+	double	y_shift;
 }				t_fractol;
 
 // draw.c
 void	put_pixel(t_fractol *frctl, int x, int y, int color);
-// void	render_test(t_fractol *fractol);
-void	render(t_fractol *fractol, char *query);
+int		match_fractal(t_fractol *fractol);
+void	render(t_fractol *fractol);
 
 // mandelbrot.c
 int		mandelbrot(t_fractol *fractol);
-int		get_fractal(t_fractol *fractol, char *str);
+void	get_factal(t_fractol *fractol, char *str);
+int		julia(t_fractol *fractol);
 
 // utils
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
+double	ft_atof(char *str);
+int		space_sign(char *str, int *is_neg);
+void	message(t_fractol *fractol);
+int		exit_fractal(t_fractol *fractol);
 
 // init
 void	init_position(t_fractol *fractol);
@@ -83,7 +93,20 @@ void	init_window(t_fractol *fractol);
 void	init_coordenates(t_fractol *fractol);
 
 // main
-int		exit_fractal(t_fractol *fractol);
+void	get_factal(t_fractol *fractol, char *str);
+void	get_julia_values(t_fractol *fractol, int ac, char **av);
+void	arg_handler(t_fractol *fractol, int ac, char **av);
 
+// hooks
+void	event_management(t_fractol *fractol);
+int		mouse_events(int keycode, int x, int y, t_fractol *fractol);
+int		key_events(int keycode, t_fractol *fractol);
+
+// colors
+int		create_trgb(int t, int r, int g, int b);
+int		get_red(int color);
+int		get_green(int color);
+int		get_blue(int color);
+int		get_color(int iterations);
 
 #endif
