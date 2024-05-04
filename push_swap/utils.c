@@ -1,38 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_big.c                                         :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/13 09:59:56 by fibarros          #+#    #+#             */
-/*   Updated: 2024/05/04 17:40:21 by fibarros         ###   ########.fr       */
+/*   Created: 2024/04/30 14:18:14 by fibarros          #+#    #+#             */
+/*   Updated: 2024/04/30 14:25:38 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort_big(t_node **a, t_node **b)
+int	nbr_strcmp(const char *s1, const char *s2)
 {
-	int	stack_size_a;
+	int	i;
+	int	j;
+	int	result;
 
-	stack_size_a = stack_len(*a);
-	while (stack_size_a-- > 3)
-		pb(b, a);
-	sort_small(a);
-	while ()
+	i = 0;
+	j = i;
+	if (s1[i] == '+')
+	{
+		if (s2[j] != '+')
+			i++;
+	}
+	else
+	{
+		if (s2[j] == '+')
+			j++;
+	}
+	result = ft_strncmp(s1 + i, s2 + j, ft_strlen(s1) + 1);
+	return (result);
 }
-
-
-
-// void	push_b(t_node **a, t_node **b)
-// {
-// 	int	stack_size;
-// 	int	pushed_nodes;
-// 	int	i;
-
-// 	stack_size = stack_len(*a);
-// 	pushed_nodes = 0;
-// 	i = 0;
-// 	while ()
-// }

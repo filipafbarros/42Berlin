@@ -6,43 +6,45 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 09:49:46 by fibarros          #+#    #+#             */
-/*   Updated: 2024/02/14 11:03:16 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/05/04 16:54:31 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	init_stack_a(t_stack_node **a, char **argv)
+void	init_stack_a(t_node **a, int ac, char **av)
 {
-	long				nbr;
-	int					i;
+	long		nbr;
+	int			i;
+	int			len;		
 
-	i = 0;
-	while (argv[i])
+	i = 1;
+	if (ac == 2)
+		i = 0;
+	while (av[i])
 	{
-		// if (syntax_error(argv[i]))
-		// 	exit_error(a, NULL);
-		nbr = ft_atol(argv[i]);
+		nbr = ft_atol(av[i]);
 		if (nbr > INT_MAX || nbr < INT_MIN)
-			exit_error(a, NULL);
-		if (error_repetion(*a, nbr))
 			exit_error(a, NULL);
 		append_node(a, (int)nbr);
 		i++;
 	}
+	len = stack_len(*a) + 1;
+	assign_index(*a, len);
 }
 
-void	append_node(t_stack_node **stack, int n)
+void	append_node(t_node **stack, int n)
 {
-	t_stack_node	*node;
-	t_stack_node	*last_node;
+	t_node	*node;
+	t_node	*last_node;
 
 	if (stack == NULL)
 		return ;
-	node = malloc(sizeof(t_stack_node));
+	node = malloc(sizeof(t_node));
 	if (node == NULL)
 		return ;
 	node->value = n;
+	node->index = 0;
 	node->next = NULL;
 	if (*stack == NULL)
 	{
@@ -80,4 +82,32 @@ long	ft_atol(const char *str)
 		i++;
 	}
 	return (nbr * sign);
+}
+
+void	assign_index(t_node *stack_a, int stack_len)
+{
+	t_node		*node;
+	t_node		*highest_node;
+	int			value;
+
+	while (--stack_len > 0)
+	{
+		node = stack_a;
+		value = INT_MIN;
+		highest_node = NULL;
+		while (node)
+		{
+			if (node->value == INT_MIN && node->index == 0)
+				node->index = 1;
+			if (node->value > value && node->index == 0)
+			{
+				value = node->value;
+				highest_node = node;
+				node = stack_a;
+			}
+			node = node->next;
+		}
+		if (highest_node != NULL)
+			highest_node->index = stack_len;
+	}
 }

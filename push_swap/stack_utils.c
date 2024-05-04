@@ -6,13 +6,13 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 09:53:48 by fibarros          #+#    #+#             */
-/*   Updated: 2024/02/12 13:46:34 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/05/03 18:01:44 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	print_stack(t_stack_node *stack)
+void	print_stack(t_node *stack)
 {
 	while (stack != NULL)
 	{
@@ -22,7 +22,7 @@ void	print_stack(t_stack_node *stack)
 	}
 }
 
-int	stack_len(t_stack_node *stack)
+int	stack_len(t_node *stack)
 {
 	int	i;
 
@@ -35,47 +35,39 @@ int	stack_len(t_stack_node *stack)
 	return (i);
 }
 
-t_stack_node	*find_max(t_stack_node *stack)
+int	find_max_index(t_node *stack)
 {
-	int				i;
-	t_stack_node	*highest_node;
+	int			index;
 
-	i = INT_MIN;
 	if (stack == NULL)
-		return (NULL);
+		return (0);
+	index = stack->index;
 	while (stack)
 	{
-		if (stack->value > i)
-		{
-			i = stack->value;
-			highest_node = stack;
-		}
+		if (stack->index > index)
+			index = stack->index;
 		stack = stack->next;
 	}
-	return (highest_node);
+	return (index);
 }
 
-t_stack_node	*find_min(t_stack_node *stack)
+int	find_min_index(t_node *stack)
 {
-	int				i;
-	t_stack_node	*smallest_node;
+	int			index;
 
-	i = INT_MIN;
 	if (stack == NULL)
-		return (NULL);
+		return (0);
+	index = stack->index;
 	while (stack)
 	{
-		if (stack->value < i)
-		{
-			i = stack->value;
-			smallest_node = stack;
-		}
+		if (stack->index < index)
+			index = stack->index;
 		stack = stack->next;
 	}
-	return (smallest_node);
+	return (index);
 }
 
-bool	is_sorted(t_stack_node **a)
+bool	is_sorted(t_node **a)
 {
 	if (a == NULL)
 		return (1);

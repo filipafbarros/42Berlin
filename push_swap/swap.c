@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 14:13:26 by fibarros          #+#    #+#             */
-/*   Updated: 2024/02/16 15:51:54 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/04/30 10:19:52 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /*swaps the top 2 elements of a stack*/
 
-void	swap(t_stack_node **stack)
+void	swap(t_node **stack)
 {
 	if (*stack == NULL || (*stack)->next == NULL)
 		return ;
@@ -27,19 +27,19 @@ void	swap(t_stack_node **stack)
 	(*stack)->prev = NULL;
 }
 
-void	sa(t_stack_node **a)
+void	sa(t_node **a)
 {
 	swap(a);
 	ft_printf("sa\n");
 }
 
-void	sb(t_stack_node **b)
+void	sb(t_node **b)
 {
 	swap(b);
 	ft_printf("sb\n");
 }
 
-void	ss(t_stack_node **a, t_stack_node **b)
+void	ss(t_node **a, t_node **b)
 {
 	swap(a);
 	swap(b);

@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 14:12:23 by fibarros          #+#    #+#             */
-/*   Updated: 2024/02/09 11:02:58 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/05/02 16:40:15 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 /*Push a node to the top of src to dest*/
 
 /*push*/
-void	push(t_stack_node **dest, t_stack_node **src)
+void	push(t_node **dest, t_node **src)
 {
-	t_stack_node	*pushed_node;
+	t_node	*pushed_node;
 
 	if (*src == NULL)
 		return ;
@@ -39,13 +39,13 @@ void	push(t_stack_node **dest, t_stack_node **src)
 	}
 }
 
-void	pa(t_stack_node **a, t_stack_node **b)
+void	pa(t_node **a, t_node **b)
 {
 	push(a, b);
 	ft_printf("pa\n");
 }
 
-void	pb(t_stack_node **b, t_stack_node **a)
+void	pb(t_node **b, t_node **a)
 {
 	push(b, a);
 	ft_printf("pb\n");

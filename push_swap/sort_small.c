@@ -6,21 +6,21 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 16:51:05 by fibarros          #+#    #+#             */
-/*   Updated: 2024/02/12 12:04:32 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/05/03 18:25:48 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort_small(t_stack_node **a)
+void	sort_small(t_node **a)
 {
-	t_stack_node	*highest_node;
+	static int		highest_index;
 
-	highest_node = find_max(*a);
-	if ((*a)->value == highest_node->value)
+	highest_index = find_max_index(*a);
+	if ((*a)->index == highest_index)
 		ra(a);
-	else if ((*a)->next->value == highest_node->value)
+	else if ((*a)->next->index == highest_index)
 		rra(a);
-	if ((*a)->value > (*a)->next->value)
+	if ((*a)->index > (*a)->next->index)
 		sa(a);
 }
