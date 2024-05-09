@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 16:51:05 by fibarros          #+#    #+#             */
-/*   Updated: 2024/05/03 18:25:48 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/05/08 14:14:13 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void	sort_small(t_node **a)
 {
-	static int		highest_index;
+	t_node	*biggest_node;
 
-	highest_index = find_max_index(*a);
-	if ((*a)->index == highest_index)
+	biggest_node = find_big_indx_node(*a);
+	if ((*a)->index == biggest_node->index)
 		ra(a);
-	else if ((*a)->next->index == highest_index)
+	else if ((*a)->next->index == biggest_node->index)
 		rra(a);
 	if ((*a)->index > (*a)->next->index)
 		sa(a);

@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 09:59:56 by fibarros          #+#    #+#             */
-/*   Updated: 2024/05/04 17:40:21 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/05/08 16:40:43 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,22 @@ void	sort_big(t_node **a, t_node **b)
 	int	stack_size_a;
 
 	stack_size_a = stack_len(*a);
-	while (stack_size_a-- > 3)
-		pb(b, a);
+	if (stack_size_a-- > 3 && !is_sorted(a))
+		pb(a, b);
+	if (stack_size_a-- > 3 && !is_sorted(a))
+		pb(a, b);
+	while (stack_size_a-- > 3 && !is_sorted(a))
+	{
+		prep_nodes_a(a, b);
+		make_moves_ab(a, b);
+	}
 	sort_small(a);
-	while ()
+	while (*b)
+	{
+		prep_nodes_b(a, b);
+		rotate_a(a, (*b)->target_node);
+		pa(a, b);
+	}
+	set_position(a);
+	final_sort(a);
 }
-
-
-
-// void	push_b(t_node **a, t_node **b)
-// {
-// 	int	stack_size;
-// 	int	pushed_nodes;
-// 	int	i;
-
-// 	stack_size = stack_len(*a);
-// 	pushed_nodes = 0;
-// 	i = 0;
-// 	while ()
-// }

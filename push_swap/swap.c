@@ -6,13 +6,11 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 14:13:26 by fibarros          #+#    #+#             */
-/*   Updated: 2024/04/30 10:19:52 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/05/08 17:46:07 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-/*swaps the top 2 elements of a stack*/
 
 void	swap(t_node **stack)
 {

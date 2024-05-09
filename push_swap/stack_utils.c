@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 09:53:48 by fibarros          #+#    #+#             */
-/*   Updated: 2024/05/03 18:01:44 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/05/07 17:20:03 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,58 +24,69 @@ void	print_stack(t_node *stack)
 
 int	stack_len(t_node *stack)
 {
-	int	i;
+	int		i;
+	t_node	*temp;
 
 	i = 0;
-	while (stack != NULL)
+	temp = stack;
+	while (temp != NULL)
 	{
-		stack = stack->next;
+		temp = temp->next;
 		i++;
 	}
 	return (i);
 }
 
-int	find_max_index(t_node *stack)
+t_node	*find_big_indx_node(t_node *stack)
 {
-	int			index;
+	int			max_index;
+	t_node		*max_node;
 
 	if (stack == NULL)
 		return (0);
-	index = stack->index;
+	max_index = INT_MIN;
 	while (stack)
 	{
-		if (stack->index > index)
-			index = stack->index;
+		if (stack->index > max_index)
+		{
+			max_index = stack->index;
+			max_node = stack;
+		}
 		stack = stack->next;
 	}
-	return (index);
+	return (max_node);
 }
 
-int	find_min_index(t_node *stack)
+t_node	*find_small_indx_node(t_node *stack)
 {
-	int			index;
+	int		min_index;
+	t_node	*min_node;
 
-	if (stack == NULL)
-		return (0);
-	index = stack->index;
+	min_index = INT_MAX;
 	while (stack)
 	{
-		if (stack->index < index)
-			index = stack->index;
+		if (stack->index < min_index)
+		{
+			min_index = stack->index;
+			min_node = stack;
+		}
 		stack = stack->next;
 	}
-	return (index);
+	return (min_node);
 }
 
 bool	is_sorted(t_node **a)
 {
+	t_node	*temp;
+
+	temp = *a;
 	if (a == NULL)
 		return (1);
-	while ((*a)->next)
+	while (temp->next)
 	{
-		if ((*a)->value > (*a)->next->value)
+		if (temp->value > temp->next->value)
 			return (false);
-		*a = (*a)->next;
+		temp = temp->next;
 	}
 	return (true);
 }
