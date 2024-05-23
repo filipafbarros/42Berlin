@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: filipa <filipa@student.42.fr>              +#+  +:+       +#+         #
+#    By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/05/19 18:16:25 by filipa            #+#    #+#              #
-#    Updated: 2024/05/19 18:23:21 by filipa           ###   ########.fr        #
+#    Created: 2024/05/19 18:16:25 by fibarros          #+#    #+#              #
+#    Updated: 2024/05/23 15:58:56 by fibarros         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
-CC = CC
-CFLAGS = -Wall -Wextra -Werror
+CC = cc
+CFLAGS = -Wall -Wextra -Werror -pthread -fsanitize=threads -fsanitze=address -g
 RM = rm -rf
 SRC =	main.c \
 		init.c \
@@ -24,7 +24,7 @@ OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
-$(NAME) : $(OBJ)
+$(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
 %.o: %.c

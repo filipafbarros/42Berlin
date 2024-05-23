@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: filipa <filipa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/16 10:20:22 by filipa            #+#    #+#             */
-/*   Updated: 2024/05/17 10:00:41 by filipa           ###   ########.fr       */
+/*   Created: 2024/05/16 10:20:22 by fibarros          #+#    #+#             */
+/*   Updated: 2024/05/23 17:15:37 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
 /*
-	atoi
 	get timestamp
 	improved usleep
 */
@@ -31,4 +30,25 @@ int	ft_atoi(char *str)
 		i++;
 	}
 	return (result);
+}
+
+int	is_digit(char c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
+}
+
+void	error_handler(char *error)
+{
+	printf("%s \n", error);
+	exit(EXIT_FAILURE);
+}
+
+size_t	get_timestamp(void)
+{
+	struct timeval	time;
+
+	gettimeofday(&time, NULL);
+	return (((size_t)time.tv_sec * 1000) + time.tv_usec / 1000);
 }

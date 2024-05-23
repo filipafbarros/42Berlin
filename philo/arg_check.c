@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arg_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: filipa <filipa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/16 10:03:00 by filipa            #+#    #+#             */
-/*   Updated: 2024/05/17 09:54:54 by filipa           ###   ########.fr       */
+/*   Created: 2024/05/16 10:03:00 by fibarros          #+#    #+#             */
+/*   Updated: 2024/05/23 16:10:04 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,34 @@
 
 int	check_args(int ac, char **av)
 {
+	int	i;
 
+	i = 1;
+
+	while (i < ac)
+	{
+		if (!is_num(av[i]) || ft_atoi(av[i]) <= 0)
+			return (0);
+		i++;
+	}
+	if (ac == 6)
+	{
+		if (ft_atoi(av[5]) < 1)
+			return (0);
+	}
+	return (1);
 }
 
-/*
-	- av[1] - num of philosophers
-	- av[2] -time it takes for a philo to die if they dont eat
-	- av[3] -time it takes for philo to eat
-	- av[4] -time it takes for a philo to sleep
-	- av[5] - OPTIONAL:number of times a philo has to eat before terminating the program
+int	is_num(char *av)
+{
+	int	i;
 
-	check if input is just numbers
-	they should all be bigger than 0 (except num of meals philo has to eat)
-	set the limit to 200 philos
-*/
+	i = 0;
+	while (av[i])
+	{
+		if (!is_digit(av[i]))
+			return (0);
+		i++;
+	}
+	return (1);
+}
