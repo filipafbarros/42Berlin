@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 10:03:00 by fibarros          #+#    #+#             */
-/*   Updated: 2024/05/23 16:10:04 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/05/23 17:54:57 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	check_args(int ac, char **av)
 	int	i;
 
 	i = 1;
-
 	while (i < ac)
 	{
 		if (!is_num(av[i]) || ft_atoi(av[i]) <= 0)

@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 10:20:22 by fibarros          #+#    #+#             */
-/*   Updated: 2024/05/23 17:15:37 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/05/24 10:37:47 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ int	ft_atoi(char *str)
 	int	i;
 	int	result;
 
+	result = 0;
 	i = 0;
-	while (str[i] >= '0' && str[i] <= '9')
+	while (is_digit(str[i]))
 	{
 		result = result * 10 + (str[i] - '0');
 		i++;

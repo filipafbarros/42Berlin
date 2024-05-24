@@ -6,9 +6,13 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 10:09:08 by fibarros          #+#    #+#             */
-/*   Updated: 2024/05/23 15:59:18 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/05/24 14:06:10 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+void    print_status()
+{
+    
+}

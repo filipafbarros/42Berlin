@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 08:42:53 by fibarros          #+#    #+#             */
-/*   Updated: 2024/05/23 17:04:13 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/05/24 11:12:06 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,22 @@
 # include <pthread.h>
 # include <stdbool.h>
 
+typedef struct s_data	t_data;
+
 typedef struct s_philo
 {
 	pthread_t			thread;
 	int					id;
 	int					meals_eaten;
 	bool				is_eating;
+	size_t				last_meal;
 	t_data				*data;
 	pthread_mutex_t		*l_fork;
 	pthread_mutex_t		*r_fork;
 }	t_philo;
 
 
-typedef struct s_data
+struct s_data
 {
 	int					t_die;
 	int					t_sleep;
@@ -46,16 +49,25 @@ typedef struct s_data
 	pthread_mutex_t		dead_lock;
 	pthread_mutex_t		meal_lock;
 	pthread_mutex_t		*forks;
-}	t_data;
+};
 
 /* Utils */
 int			ft_atoi(char *str);
 void		error_handler(char *error);
 int			is_digit(char c);
+size_t		get_timestamp(void);
 
 /* Argument handling */
 int			check_args(int ac, char **av);
 int			is_num(char *av);
 
+/* Initialization */
+void		init_input(t_data *data, int ac, char **av);
+void		init_forks(t_data *data);
+void		init_philos(t_data *data);
+int			init_all(t_data *data, int ac, char **av);
+
+/* testing */
+// void 		print_philosophers(t_philo *philos, int num_philos);
 
 #endif
