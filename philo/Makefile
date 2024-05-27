@@ -6,7 +6,7 @@
 #    By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/19 18:16:25 by fibarros          #+#    #+#              #
-#    Updated: 2024/05/23 17:52:40 by fibarros         ###   ########.fr        #
+#    Updated: 2024/05/27 16:58:31 by fibarros         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,9 @@ SRC =	main.c \
 		init.c \
 		routine.c \
 		utils.c \
-		arg_check.c
+		arg_check.c \
+		simulation.c \
+		monitor.c
 
 OBJ = $(SRC:.c=.o)
 

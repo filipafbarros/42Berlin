@@ -6,18 +6,12 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 10:20:22 by fibarros          #+#    #+#             */
-/*   Updated: 2024/05/24 10:37:47 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/05/27 15:14:53 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-/*
-	get timestamp
-	improved usleep
-*/
-
-/* Add sign? Add spaces? Add for '- and +' ?*/
 int	ft_atoi(char *str)
 {
 	int	i;
@@ -52,4 +46,9 @@ size_t	get_timestamp(void)
 
 	gettimeofday(&time, NULL);
 	return (((size_t)time.tv_sec * 1000) + time.tv_usec / 1000);
+}
+
+int	ft_usleep(size_t miliseconds)
+{
+	
 }

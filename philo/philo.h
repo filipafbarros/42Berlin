@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 08:42:53 by fibarros          #+#    #+#             */
-/*   Updated: 2024/05/24 11:12:06 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/05/27 17:30:24 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ struct s_data
 	int					t_eat;
 	int					num_philos;
 	int					num_meals;
+	bool				is_dead;
 	t_philo				*philos;
 	size_t				t_start;
 	pthread_mutex_t		write_lock;
@@ -66,6 +67,16 @@ void		init_input(t_data *data, int ac, char **av);
 void		init_forks(t_data *data);
 void		init_philos(t_data *data);
 int			init_all(t_data *data, int ac, char **av);
+
+/* Routine */
+void		print_status(char *status, t_philo *philo, int id);
+void		is_sleeping(t_philo *philo);
+void		is_thinking(t_philo *philo);
+void		is_eating(t_philo *philo);
+
+/* Monitor */
+void		*monitor(t_data	*data);
+bool		all_philos_done_eating(t_data *data);
 
 /* testing */
 // void 		print_philosophers(t_philo *philos, int num_philos);
