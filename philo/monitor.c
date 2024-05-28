@@ -6,16 +6,18 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:51:52 by fibarros          #+#    #+#             */
-/*   Updated: 2024/05/27 17:30:18 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/05/28 17:33:24 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	*monitor(t_data	*data)
+void	*monitor(void *pointer)
 {
 	int		i;
+	t_data	*data;
 
+	data = (t_data *)pointer;
 	while (!data->is_dead)
 	{
 		i = -1;
@@ -29,7 +31,7 @@ void	*monitor(t_data	*data)
 				data->is_dead = true;
 				break ;
 			}
-			if (data->philos[i].meals_eaten == data->num_meals)
+			if (data->num_meals != -1 && data->philos[i].meals_eaten >= data->num_meals)
 			{
 				if (all_philos_done_eating(data))
 				{
@@ -38,8 +40,9 @@ void	*monitor(t_data	*data)
 				}
 			}
 		}
-		usleep(1000);
+		usleep(100);
 	}
+	return ((void *)pointer);
 }
 
 bool	all_philos_done_eating(t_data *data)

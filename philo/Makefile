@@ -6,13 +6,13 @@
 #    By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/19 18:16:25 by fibarros          #+#    #+#              #
-#    Updated: 2024/05/27 16:58:31 by fibarros         ###   ########.fr        #
+#    Updated: 2024/05/28 14:56:59 by fibarros         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -pthread -fsanitize=address -g
+CFLAGS = -Wall -Wextra -Werror -pthread -g #-fsanitize=address -g
 RM = rm -rf
 SRC =	main.c \
 		init.c \

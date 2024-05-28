@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 09:26:49 by fibarros          #+#    #+#             */
-/*   Updated: 2024/05/25 15:50:18 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/05/28 16:51:26 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,11 @@ int	init_all(t_data *data, int ac, char **av)
 	init_philos(data);
 	data->t_start = get_timestamp();
 	data->is_dead = false;
-	pthread_mutex_init(&(data->write_lock), NULL);
-	pthread_mutex_init(&(data->meal_lock), NULL);
-	pthread_mutex_init(&(data->dead_lock), NULL);
+	if (pthread_mutex_init(&(data->write_lock), NULL) != 0)
+		return (1);
+	if (pthread_mutex_init(&(data->meal_lock), NULL) != 0)
+		return (1);
+	if (pthread_mutex_init(&(data->dead_lock), NULL) != 0)
+		return (1);
 	return (0);
 }

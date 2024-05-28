@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 10:20:22 by fibarros          #+#    #+#             */
-/*   Updated: 2024/05/27 15:14:53 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/05/28 14:31:57 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,10 @@ size_t	get_timestamp(void)
 
 int	ft_usleep(size_t miliseconds)
 {
-	
+	uint64_t	start;
+
+	start = get_timestamp();
+	while (get_timestamp() - start < miliseconds)
+		usleep(500);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 08:42:49 by fibarros          #+#    #+#             */
-/*   Updated: 2024/05/27 16:10:24 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/05/28 16:52:08 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,27 +26,31 @@ int	main(int ac, char **av)
 		error_handler("memory allocation failed");
 	if (init_all(data, ac, av) == 1)
 	{
-		free(data->philos);
+		destroy_all(data, "error with initializing");
 		free(data);
-		error_handler("memory allocation failed");
+		return (1);
 	}
-	free(data->philos);
+	simulation(data);
+	destroy_all(data, NULL);
 	free(data);
+	return (0);
 }
 
-// check args
-// init vars
+void	destroy_all(t_data *data, char *error_message)
+{
+	int	i;
 
-// void print_philosophers(t_philo *philos, int num_philos) {
-//     for (int i = 0; i < num_philos; i++) {
-//         printf("Philosopher %d:\n", i);
-//         printf("Thread ID: %lu\n", philos[i].thread);
-//         printf("ID: %d\n", philos[i].id);
-//         printf("Meals eaten: %d\n", philos[i].meals_eaten);
-//         printf("Is eating: %s\n", philos[i].is_eating ? "true" : "false");
-//         printf("Last meal: %zu\n", philos[i].last_meal);
-//         printf("Data pointer: %p\n", (void *)philos[i].data);
-//         printf("Left fork: %p\n", (void *)philos[i].l_fork);
-//         printf("Right fork: %p\n", (void *)philos[i].r_fork);
-//     }
-// }
+	i = 0;
+	while (i < data->num_philos)
+	{
+		pthread_mutex_destroy(&data->forks[i]);
+		i++;
+	}
+	pthread_mutex_destroy(&data->dead_lock);
+	pthread_mutex_destroy(&data->write_lock);
+	pthread_mutex_destroy(&data->meal_lock);
+	free(data->forks);
+	free(data->philos);
+	if (error_message)
+		error_handler(error_message);
+}

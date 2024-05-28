@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 08:42:53 by fibarros          #+#    #+#             */
-/*   Updated: 2024/05/27 17:30:24 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/05/28 18:00:02 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <string.h>
 # include <pthread.h>
 # include <stdbool.h>
+# include <stdint.h>
+# include <errno.h>
 
 typedef struct s_data	t_data;
 
@@ -38,9 +40,9 @@ typedef struct s_philo
 
 struct s_data
 {
-	int					t_die;
-	int					t_sleep;
-	int					t_eat;
+	size_t				t_die;
+	size_t				t_sleep;
+	size_t				t_eat;
 	int					num_philos;
 	int					num_meals;
 	bool				is_dead;
@@ -57,6 +59,8 @@ int			ft_atoi(char *str);
 void		error_handler(char *error);
 int			is_digit(char c);
 size_t		get_timestamp(void);
+void		destroy_all(t_data *data, char *error_message);
+int			ft_usleep(size_t miliseconds);
 
 /* Argument handling */
 int			check_args(int ac, char **av);
@@ -73,10 +77,15 @@ void		print_status(char *status, t_philo *philo, int id);
 void		is_sleeping(t_philo *philo);
 void		is_thinking(t_philo *philo);
 void		is_eating(t_philo *philo);
+void		*routine(void *pointer);
 
 /* Monitor */
-void		*monitor(t_data	*data);
+void		*monitor(void *pointer);
 bool		all_philos_done_eating(t_data *data);
+
+/* Simulation */
+int			*simulation(t_data *data);
+int			death_loop(t_philo *philo);
 
 /* testing */
 // void 		print_philosophers(t_philo *philos, int num_philos);
