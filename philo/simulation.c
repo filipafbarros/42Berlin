@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 16:58:09 by fibarros          #+#    #+#             */
-/*   Updated: 2024/05/28 17:33:48 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/05/29 17:06:48 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	*simulation(t_data *data)
 	pthread_t	monitor_thread;
 
 	i = 0;
+	data->t_start = get_timestamp();
 	if (pthread_create(&monitor_thread, NULL, &monitor, (void *)data) != 0)
 		destroy_all(data, "Thread creation error: monitor thread");
 	while (i < data->num_philos)
@@ -28,14 +29,14 @@ int	*simulation(t_data *data)
 		i++;
 	}
 	i = 0;
+	if (pthread_join(monitor_thread, NULL) != 0)
+		destroy_all(data, "Thread join error: monitor thread");
 	while (i < data->num_philos)
 	{
 		if (pthread_join(data->philos[i].thread, NULL) != 0)
 			destroy_all(data, "Thread join error: philo thread");
 		i++;
 	}
-	if (pthread_join(monitor_thread, NULL) != 0)
-		destroy_all(data, "Thread join error: monitor thread");
 	return (0);
 }
 

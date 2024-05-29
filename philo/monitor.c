@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:51:52 by fibarros          #+#    #+#             */
-/*   Updated: 2024/05/28 17:33:24 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/05/29 18:11:14 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,43 +18,50 @@ void	*monitor(void *pointer)
 	t_data	*data;
 
 	data = (t_data *)pointer;
-	while (!data->is_dead)
+	while (1)
 	{
 		i = -1;
 		while (i++ < data->num_philos)
 		{
+			pthread_mutex_lock(&data->meal_lock);
 			if (get_timestamp() - (data->philos[i].last_meal) > data->t_die)
 			{
-				pthread_mutex_lock(&data->write_lock);
 				print_status("has died", &data->philos[i], data->philos[i].id);
-				pthread_mutex_unlock(&data->write_lock);
 				data->is_dead = true;
-				break ;
+				pthread_mutex_unlock(&data->meal_lock);
+				return (NULL);
 			}
-			if (data->num_meals != -1 && data->philos[i].meals_eaten >= data->num_meals)
-			{
-				if (all_philos_done_eating(data))
-				{
-					data->is_dead = true;
-					break ;
-				}
-			}
+			pthread_mutex_unlock(&data->meal_lock);
 		}
-		usleep(100);
+		if (all_philos_done_eating(data) == 1)
+			return (NULL);
 	}
-	return ((void *)pointer);
+	return (NULL);
 }
 
-bool	all_philos_done_eating(t_data *data)
+int	all_philos_done_eating(t_data *data)
 {
 	int	i;
+	int	done_eating;
 
 	i = 0;
+	done_eating = 0;
+	if (data->num_meals == -1)
+		return (0);
 	while (i < data->num_philos)
 	{
-		if (data->philos[i].meals_eaten < data->num_meals)
-			return (false);
+		pthread_mutex_lock(&data->meal_lock);
+		if (data->philos[i].meals_eaten >= data->num_meals)
+			done_eating++;
+		pthread_mutex_unlock(&data->meal_lock);
 		i++;
 	}
-	return (true);
+	if (done_eating == data->num_philos)
+	{
+		pthread_mutex_lock(&data->dead_lock);
+		data->is_dead = true;
+		pthread_mutex_unlock(&data->dead_lock);
+		return (1);
+	}
+	return (0);
 }

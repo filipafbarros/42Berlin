@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 09:26:49 by fibarros          #+#    #+#             */
-/*   Updated: 2024/05/28 16:51:26 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/05/29 14:07:55 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,17 @@ void	init_forks(t_data *data)
 	i = 0;
 	data->forks = malloc(sizeof(pthread_mutex_t) * data->num_philos);
 	if (data->forks == NULL)
+	{
 		error_handler("Failed to allocate memory for forks");
+		return ;
+	}
 	while (i < data->num_philos)
 	{
-		pthread_mutex_init(&data->forks[i], NULL);
+		if (pthread_mutex_init(&data->forks[i], NULL) != 0)
+		{
+			error_handler("Failed to init fork mutex");
+			return ;
+		}
 		i++;
 	}
 }
@@ -64,8 +71,8 @@ int	init_all(t_data *data, int ac, char **av)
 		return (1);
 	init_forks(data);
 	init_philos(data);
-	data->t_start = get_timestamp();
 	data->is_dead = false;
+	data->t_start = 0;
 	if (pthread_mutex_init(&(data->write_lock), NULL) != 0)
 		return (1);
 	if (pthread_mutex_init(&(data->meal_lock), NULL) != 0)
