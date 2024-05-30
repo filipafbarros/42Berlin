@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 16:58:09 by fibarros          #+#    #+#             */
-/*   Updated: 2024/05/29 17:06:48 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/05/30 15:54:16 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	*simulation(t_data *data)
 		if (pthread_create(&data->philos[i].thread, NULL, routine, \
 		&data->philos[i]) != 0)
 			destroy_all(data, "Thread creation error: Philo thread");
+		//ft_usleep(1);
 		i++;
 	}
 	i = 0;
@@ -37,14 +38,5 @@ int	*simulation(t_data *data)
 			destroy_all(data, "Thread join error: philo thread");
 		i++;
 	}
-	return (0);
-}
-
-int	death_loop(t_philo *philo)
-{
-	pthread_mutex_lock(&philo->data->dead_lock);
-	if (philo->data->is_dead == true)
-		return (pthread_mutex_destroy(&philo->data->dead_lock), 1);
-	pthread_mutex_destroy(&philo->data->dead_lock);
 	return (0);
 }

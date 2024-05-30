@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 08:42:53 by fibarros          #+#    #+#             */
-/*   Updated: 2024/05/28 18:00:02 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/05/30 17:31:25 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,21 +73,18 @@ void		init_philos(t_data *data);
 int			init_all(t_data *data, int ac, char **av);
 
 /* Routine */
-void		print_status(char *status, t_philo *philo, int id);
+void		print_status(char *status, t_philo *philo);
 void		is_sleeping(t_philo *philo);
 void		is_thinking(t_philo *philo);
 void		is_eating(t_philo *philo);
 void		*routine(void *pointer);
+int			death_check(t_data *data);
 
 /* Monitor */
 void		*monitor(void *pointer);
-bool		all_philos_done_eating(t_data *data);
+void		all_philos_done_eating(t_data *data, int done_eating);
 
 /* Simulation */
 int			*simulation(t_data *data);
-int			death_loop(t_philo *philo);
-
-/* testing */
-// void 		print_philosophers(t_philo *philos, int num_philos);
 
 #endif
