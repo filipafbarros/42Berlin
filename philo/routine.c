@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 10:09:08 by fibarros          #+#    #+#             */
-/*   Updated: 2024/06/14 12:59:12 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/06/14 13:03:22 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,6 @@ void	is_sleeping(t_philo *philo)
 	print_status("is sleeping", philo);
 	ft_usleep(philo->data->t_sleep);
 }
-
-// void	is_thinking(t_philo *philo)
-// {
-// 	size_t	time;
-
-// 	print_status("is thinking", philo);
-// 	time = philo->data->t_die - philo->data->t_eat - philo->data->t_sleep;
-// 	if ((philo->data->num_philos % 2) == 0)
-// 		usleep(10);
-// 	else
-// 	{
-// 		if (time <= 0)
-// 			usleep(900);
-// 		else
-// 			usleep(time * 900);
-// 	}
-// }
 
 void	is_thinking(t_philo *philo)
 {
