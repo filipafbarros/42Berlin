@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:51:52 by fibarros          #+#    #+#             */
-/*   Updated: 2024/05/30 17:37:39 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/06/14 12:58:30 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,66 +24,64 @@ int	death_check(t_data *data)
 	return (0);
 }
 
+int	philo_died(t_philo *philo)
+{
+	pthread_mutex_lock(&philo->data->meal_lock);
+	if (get_timestamp() - philo->last_meal >= philo->data->t_die \
+	&& !philo->is_eating)
+	{
+		pthread_mutex_unlock(&philo->data->meal_lock);
+		return (1);
+	}
+	pthread_mutex_unlock(&philo->data->meal_lock);
+	return (0);
+}
+
 void	*monitor(void *pointer)
 {
 	int		i;
 	t_data	*data;
-	int		done_eating;
 
 	data = (t_data *)pointer;
-	done_eating = 0;
-	i = -1;
-	while (i++ < data->num_philos)
+	while (!death_check(data))
 	{
-		while (!data->is_dead)
+		i = -1;
+		while (++i < data->num_philos)
 		{
-			pthread_mutex_lock(&data->dead_lock);
-			if (get_timestamp() - (data->philos[i].last_meal) > data->t_die && (!data->philos[i].is_eating))
+			if (philo_died(&data->philos[i]))
 			{
 				print_status("died", &data->philos[i]);
-				data->is_dead = true;
+				turn_dead(data);
 			}
-			pthread_mutex_unlock(&data->dead_lock);
-			if (data->num_meals != -1 && data->philos[i].meals_eaten >= data->num_meals)
-				done_eating++;
-			all_philos_done_eating(data, done_eating);
+			all_philos_done_eating(data);
 		}
 	}
-	return (NULL);
+	return (pointer);
 }
 
-void	all_philos_done_eating(t_data *data, int done_eating)
+void	turn_dead(t_data *data)
 {
 	pthread_mutex_lock(&data->dead_lock);
-	if (done_eating == data->num_philos)
-		data->is_dead = true;
+	data->is_dead = true;
 	pthread_mutex_unlock(&data->dead_lock);
 }
 
+int	all_philos_done_eating(t_data *data)
+{
+	int	i;
 
-// void	*monitor(void *pointer)
-// {
-// 	int		i;
-// 	t_data	*data;
-
-// 	data = (t_data *)pointer;
-// 	while (1)
-// 	{
-// 		i = -1;
-// 		while (i++ < data->num_philos)
-// 		{
-// 			pthread_mutex_lock(&data->meal_lock);
-// 			if (get_timestamp() - (data->philos[i].last_meal) > data->t_die)
-// 			{
-// 				print_status("has died", &data->philos[i], data->philos[i].id);
-// 				data->is_dead = true;
-// 				pthread_mutex_unlock(&data->meal_lock);
-// 				return (NULL);
-// 			}
-// 			pthread_mutex_unlock(&data->meal_lock);
-// 		}FATAL: ThreadSanitizer: unexpected memory mapping 0x768bfe8ae000-0x768bfed00000
-// 		if (all_philos_done_eating(data) == 1)
-// 			return (NULL);
-// 	}
-// 	return (NULL);
-// }
+	i = 0;
+	while (i < data->num_philos)
+	{
+		pthread_mutex_lock(&data->meal_lock);
+		if (!data->philos[i].done_eating)
+		{
+			pthread_mutex_unlock(&data->meal_lock);
+			return (0);
+		}
+		pthread_mutex_unlock(&data->meal_lock);
+		i++;
+	}
+	turn_dead(data);
+	return (1);
+}

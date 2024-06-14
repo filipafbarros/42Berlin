@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 09:26:49 by fibarros          #+#    #+#             */
-/*   Updated: 2024/05/29 14:07:55 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/06/03 14:24:44 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	init_philos(t_data *data)
 		data->philos[i].meals_eaten = 0;
 		data->philos[i].is_eating = false;
 		data->philos[i].data = data;
+		data->philos[i].done_eating = false;
 		data->philos[i].last_meal = get_timestamp();
 		data->philos[i].l_fork = &data->forks[i];
 		data->philos[i].r_fork = &data->forks[(i + 1) % data->num_philos];

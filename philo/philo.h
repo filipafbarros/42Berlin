@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 08:42:53 by fibarros          #+#    #+#             */
-/*   Updated: 2024/05/30 17:31:25 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/06/03 14:30:52 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ typedef struct s_philo
 	int					id;
 	int					meals_eaten;
 	bool				is_eating;
+	bool				done_eating;
 	size_t				last_meal;
 	t_data				*data;
 	pthread_mutex_t		*l_fork;
 	pthread_mutex_t		*r_fork;
 }	t_philo;
-
 
 struct s_data
 {
@@ -82,7 +82,9 @@ int			death_check(t_data *data);
 
 /* Monitor */
 void		*monitor(void *pointer);
-void		all_philos_done_eating(t_data *data, int done_eating);
+int			all_philos_done_eating(t_data *data);
+int			philo_died(t_philo *philo);
+void		turn_dead(t_data *data);
 
 /* Simulation */
 int			*simulation(t_data *data);
