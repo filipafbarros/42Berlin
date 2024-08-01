@@ -10,8 +10,10 @@ Welcome to my GitHub repository! This repository contains all of my projects com
   - [Get Next Line](#get-next-line)
   - [Ft_printf](#ft_printf)
   - [Born2beroot](#born2beroot)
-  - [So Long](#so-long)
-  - [Minishell](#minishell) - in it's own repo
+  - [Minishell](#minishell) - in its own repo
+  - [Fractol](#fractol)
+  - [Push_swap](#push_swap)
+  - [Minitalk](#minitalk)
   - [Philosophers](#philosophers)
 - [License](#license)
 
@@ -45,19 +47,35 @@ Welcome to my GitHub repository! This repository contains all of my projects com
 **Status:** Completed  
 **Technologies:** Shell Scripting, Linux
 
-### So Long
+### Minishell
 
-**Description:** A small 2D game where the player collects items and reaches an exit, built using the MinilibX library.  
+**Description:** A simple shell implementation that supports command execution, piping, and basic built-in commands.  
+**Status:** Completed  
+**Technologies:** C
+
+### Fractol
+
+**Description:** A graphical program that generates and displays fractals, providing an interactive experience with zoom and color changes.  
 **Status:** Completed  
 **Technologies:** C, MinilibX
+
+### Push_swap
+
+**Description:** A sorting algorithm project where the task is to sort a stack of integers with the least number of operations, using a limited set of predefined moves.  
+**Status:** Completed  
+**Technologies:** C
+
+### Minitalk
+
+**Description:** A communication program in which a client and server send messages to each other using UNIX signals.  
+**Status:** Completed  
+**Technologies:** C, UNIX Signals
 
 ### Philosophers
 
 **Description:** A simulation of the dining philosophers problem to explore concurrent programming and synchronization.  
 **Status:** Completed  
 **Technologies:** C, pthreads
-
-
 
 ## License
 
